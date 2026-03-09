@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Код подтверждения — FunMint</title>
+</head>
+
+<body style="margin:0; padding:0; background-color:#0b1020; font-family:Arial, sans-serif; color:#d9e2ff;">
+    <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#0b1020; padding:40px 0;">
+        <tr>
+            <td align="center">
+                <table width="100%" cellpadding="0" cellspacing="0"
+                    style="max-width:600px; background-color:#0e152b; border-radius:16px; box-shadow:0 10px 30px rgba(0, 0, 0, .35); padding:40px;">
+                    <tr>
+                        <td align="center" style="font-size:24px; font-weight:bold; color:#2e7fff;">
+                            {{#if isRegistering}}Добро пожаловать на FunMint 🎉{{else}}Вход на Funmint 🔐{{/if}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top:20px; font-size:16px; color:#d9e2ff;">
+                            {{#if isRegistering}}Для завершения регистрации используйте следующий код:{{else}}Вы запрашивали вход на сайт. Вот ваш код авторизации:{{/if}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" style="padding:30px 0;">
+                            <div
+                                style="display:inline-block; background-color:#1f2b4a; padding:20px 40px; border-radius:16px; font-size:32px; font-weight:bold; color:#6aa6ff; letter-spacing:2px;">
+                                {{code}}
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-size:14px; color:#9bb0d7;">
+                            Если вы не запрашивали этот код, просто проигнорируйте это письмо.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top:40px; font-size:14px; color:#9bb0d7;" align="center">
+                            С уважением,<br>
+                            Команда Funmint<br>
+                            <a href="https://funmint.ru/"
+                                style="color:#2e7fff; text-decoration:none;">https://funmint.ru/</a>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

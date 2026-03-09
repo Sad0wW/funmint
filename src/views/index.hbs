@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <title>FunMint — автоматизация рутины на FunPay</title>
+
+    <meta name="description" content="FunMint — быстрые автоответы и инструменты для автоматизации рутины на FunPay" />
+    <meta name="keywords"
+        content="funmint, фанминт, funpay extension, фанпей екстенсион, funpay lite bot, фанпей лайт бот, funpay cardinal, фанпей кардинал, funpay vertex, фанпей вертекс, plugin, плагин, plugins, плагины extension, екстенсион, lite bot, лайт бот, cardinal, кардинал, vertex, вертекс, funpay, фанпей">
+    <meta name="author" content="FunMint">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="og:title" content="FunMint">
+    <meta property="og:description"
+        content="FunMint — быстрые автоответы и инструменты для автоматизации рутины на FunPay">
+    <meta property="og:image" content="https://funmint.ru/images/icon.png">
+    <meta property="og:url" content="https://funmint.ru/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="FunMint">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FunMint">
+    <meta name="twitter:description"
+        content="FunMint — быстрые автоответы и инструменты для автоматизации рутины на FunPay">
+    <meta name="twitter:image" content="https://funmint.ru/images/icon.png">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "name": "FunMint",
+            "description": "FunMint — быстрые автоответы и инструменты для автоматизации рутины на FunPay",
+            "image": "https://funmint.ru/images/icon.png",
+            "logo": "https://funmint.ru/images/icon.png",
+            "url": "https://funmint.ru",
+            "brand": {
+                "@type": "Organization",
+                "name": "FunMint"
+            },
+            "offers": [
+                {
+                    "@type": "Offer",
+                    "price": "199",
+                    "priceCurrency": "RUB",
+                    "priceValidUntil": "2026-12-31",
+                    "availability": "https://schema.org/InStock",
+                    "itemCondition": "https://schema.org/NewCondition",
+                    "description": "Подписка на 1 месяц",
+                    "name": "1 месяц",
+                    "sku": "FM-1M",
+                    "url": "https://funmint.ru#months1"
+                },
+                {
+                    "@type": "Offer",
+                    "price": "399",
+                    "priceCurrency": "RUB",
+                    "priceValidUntil": "2026-12-31",
+                    "availability": "https://schema.org/InStock",
+                    "itemCondition": "https://schema.org/NewCondition",
+                    "description": "Подписка на 3 месяца",
+                    "name": "3 месяца",
+                    "sku": "FM-3M",
+                    "url": "https://funmint.ru#months3"
+                },
+                {
+                    "@type": "Offer",
+                    "price": "699",
+                    "priceCurrency": "RUB",
+                    "priceValidUntil": "2026-12-31",
+                    "availability": "https://schema.org/InStock",
+                    "itemCondition": "https://schema.org/NewCondition",
+                    "description": "Подписка на 6 месяцец",
+                    "name": "6 месяцец",
+                    "sku": "FM-6M",
+                    "url": "https://funmint.ru#months6"
+                },
+                {
+                    "@type": "Offer",
+                    "price": "1299",
+                    "priceCurrency": "RUB",
+                    "priceValidUntil": "2026-12-31",
+                    "availability": "https://schema.org/InStock",
+                    "itemCondition": "https://schema.org/NewCondition",
+                    "description": "Подписка на 12 месяцев",
+                    "name": "12 месяцев",
+                    "sku": "FM-12M",
+                    "url": "https://funmint.ru#months12"
+                }
+            ]
+        }
+    </script>
+
+    <link rel="stylesheet" href="/Inter.css">
+    <link rel="stylesheet" href="/style.css">
+
+    <script src="/index.js" defer></script>
+    <script src="/shop.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <div class="container nav">
+            <div class="brand">
+                <a href="/">
+                    <div class="logo" aria-hidden="true">🌿</div>
+                    <span>FunMint</span>
+                </a>
+            </div>
+            <nav>
+                <button class="menu-toggle" aria-label="Меню">☰</button>
+                <div id="navLinks" class="nav-links">
+                    <a href="#about">О проекте</a>
+                    <a href="#features">Возможности</a>
+                    <a href="#pricing">Тарифы</a>
+                    <a href="#contacts">Контакты</a>
+                    <a href="#faq">FAQ</a>
+                    <a class="btn" href="/profile">Профиль</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-wrapper">
+        <main>
+            <section id="about" class="hero">
+                <div class="bg-blob"></div>
+                <div class="container hero-inner">
+                    <div>
+                        <span class="badge">⚡ Автоматизация FunPay</span>
+                        <h1 class="headline">FunMint — автоматические ответы и инструменты, которые экономят часы рутины
+                        </h1>
+                        <p class="sub">Проект создан для продавцов и пользователей <strong>FunPay</strong>: мгновенные
+                            автоответы, перебив цены, статистика и ещё больше — всё, чтобы вы делали больше за
+                            меньшее время.</p>
+                        <div style="display:flex;gap:10px;margin-top:16px">
+                            <a class="btn btn-primary" href="#pricing">Выбрать тариф</a>
+                            <a class="btn" href="#features">Смотреть возможности</a>
+                        </div>
+                    </div>
+                    <div class="hero-card">
+                        <h3 style="margin:0 0 6px">Почему это удобно?</h3>
+                        <ul class="muted" style="margin:0 0 12px 18px; line-height:1.6">
+                            <li>Ответы без задержек — даже когда вы офлайн.</li>
+                            <li>Контакт с клиентом, как будто лично.</li>
+                            <li>Все нужные функции в одном месте.</li>
+                            <li>Простая настройка, никаких сложных интеграций.</li>
+                        </ul>
+                        <a class="btn" href="#faq">Подробнее в FAQ</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="features">
+                <div class="container">
+                    <h2 class="section-title">Возможности</h2>
+                    <p class="muted">Каждая функция FunMint создана, чтобы убрать лишнюю рутину и оставить вам только
+                        самое
+                        важное — продажи и общение с клиентами.</p>
+                    <div class="grid features" style="margin-top:16px">
+                        <article class="card">
+                            <span class="badge">Функция #1</span>
+                            <h3>Умные автоответы</h3>
+                            <p class="muted">Автоматические ответы на ключевые слова, приветствия и уведомления о
+                                покупке.
+                                Клиенты получают быстрый отклик даже когда вы офлайн.</p>
+                        </article>
+                        <article class="card">
+                            <span class="badge">Функция #2</span>
+                            <h3>Автоответ на отзывы</h3>
+                            <p class="muted">Сервис сам благодарит клиентов за оставленные отзывы и поддерживает
+                                активность в
+                                вашем профиле.</p>
+                        </article>
+                        <article class="card">
+                            <span class="badge">Функция #3</span>
+                            <h3>Автоподнятие лотов</h3>
+                            <p class="muted">Ваши товары всегда наверху списка — система автоматически поднимает лоты
+                                без вашего
+                                участия.</p>
+                        </article>
+                        <article class="card">
+                            <span class="badge">Функция #4</span>
+                            <h3>Динамическое ценообразование</h3>
+                            <p class="muted">Функция анализирует цены конкурентов и снижает стоимость ваших товаров так,
+                                чтобы
+                                они оставались более выгодными.</p>
+                        </article>
+                        <article class="card">
+                            <span class="badge">Функция #5</span>
+                            <h3>Статистика</h3>
+                            <p class="muted">Следите за статистикой — сколько вы заработали и сколько товаров продали.
+                            </p>
+                        </article>
+                        <article class="card">
+                            <span class="badge">Функция #6</span>
+                            <h3>Вечный онлайн</h3>
+                            <p class="muted">Вечный онлайн — будьте на связи круглосуточно! Клиенты смогут писать вам и получать ответы даже когда вы отдыхаете.
+                            </p>
+                        </article>
+                        {{!-- <article class="card"
+                            style="border-style:dashed; background:linear-gradient(180deg, rgba(106,166,255,.06), rgba(255,255,255,.01))">
+                            <span class="badge" style="background:rgba(255,255,255,.06)">Скоро</span>
+                            <h3>В разработке…</h3>
+                            <p class="muted">Новая функция появится совсем скоро. Следите за обновлениями в
+                                телеграм‑канале.</p>
+                        </article> --}}
+                    </div>
+                </div>
+            </section>
+
+            <section id="pricing">
+                <div class="container">
+                    <h2 class="section-title">Тарифы</h2>
+                    <p class="muted">Выберите удобный тариф и начните пользоваться автоматизацией уже сегодня. Все
+                        функции
+                        доступны на любом плане.</p>
+                    <div class="grid pricing" style="margin-top:16px">
+                        <article class="card price-card" id="1months">
+                            <h3>1 месяц</h3>
+                            <div class="price">199 ₽</div>
+                            <button class="btn btn-primary" data-period="1" data-open="modal-shop"
+                                aria-label="Оплатить 1 месяц за 199 рублей">ОПЛАТИТЬ</button>
+                        </article>
+                        <article class="card price-card" id="3months">
+                            <h3>3 месяца</h3>
+                            <div class="price">399 ₽</div>
+                            <button class="btn btn-primary" data-period="3" data-open="modal-shop"
+                                aria-label="Оплатить 3 месяца за 399 рублей">ОПЛАТИТЬ</button>
+                        </article>
+                        <article class="card price-card" id="6months">
+                            <h3>6 месяцев</h3>
+                            <div class="price">699 ₽</div>
+                            <button class="btn btn-primary" data-period="6" data-open="modal-shop"
+                                aria-label="Оплатить 6 месяцев за 699 рублей">ОПЛАТИТЬ</button>
+                        </article>
+                        <article class="card price-card" id="12months">
+                            <h3>12 месяцев</h3>
+                            <div class="price">1299 ₽</div>
+                            <button class="btn btn-primary" data-period="12" data-open="modal-shop"
+                                aria-label="Оплатить 12 месяцев за 1299 рублей">ОПЛАТИТЬ</button>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contacts">
+                <div class="container">
+                    <h2 class="section-title">Контакты</h2>
+                    <div class="grid contacts" style="margin-top:16px">
+                        <article class="card">
+                            <h3>Телеграм‑канал</h3>
+                            <p class="muted">Новости, релизы и объявления.</p>
+                            <a class="btn" href="https://t.me/funmint_official" target="_blank" rel="noopener">Перейти в
+                                канал</a>
+                        </article>
+                        <article class="card">
+                            <h3>Техническая поддержка</h3>
+                            <p class="muted">Задайте вопрос, опишите проблему.</p>
+                            <a class="btn" href="https://t.me/funmintsupport_bot" target="_blank" rel="noopener">Написать в
+                                поддержку</a>
+                        </article>
+                        <article class="card">
+                            <h3>Почта для сотрудничества</h3>
+                            <p class="muted">Предложения партнёрств и интеграций.</p>
+                            <a class="btn" href="mailto:abuse@funmint.ru">abuse@funmint.ru</a>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section id="cta">
+                <div class="container">
+                    <div class="card"
+                        style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px">
+                        <div>
+                            <h3 style="margin:0 0 6px">Готовы ускорить работу на FunPay?</h3>
+                            <p class="muted" style="margin:0">Подключитесь сейчас и получите максимум пользы от
+                                автоматизации.
+                            </p>
+                        </div>
+                        <a class="btn btn-primary" href="#pricing">Перейти к тарифам</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="faq">
+                <div class="container">
+                    <h2 class="section-title">FAQ</h2>
+                    <div class="grid" style="gap:10px">
+                        <details>
+                            <summary>Это официальный продукт FunPay?</summary>
+                            <div class="muted">Нет. FunMint — независимый проект автоматизации для пользователей FunPay.
+                                Уважайте правила платформы.</div>
+                        </details>
+                        <details>
+                            <summary>Есть ли тестовый период?</summary>
+                            <div class="muted">На данный момент — нет.</div>
+                        </details>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <div id="notifications"></div>
+
+        <div id="cookie-banner">
+            <div class="container">
+                <div>
+                    Мы используем cookie для авторизации, защиты и улучшения работы Сервиса. Подробнее в нашей
+                    <a href="/cookie">Политике Cookie</a>.
+                </div>
+                <button id="cookie-accept" class="btn btn-primary">
+                    Понятно
+                </button>
+            </div>
+        </div>
+
+        <footer>
+            <div class="container foot">
+                <div style="opacity:.9">© <span id="year"></span> FunMint. Все права защищены.</div>
+                <nav style="display:flex;gap:12px;flex-wrap:wrap">
+                    <a href="/privacy">Политика конфиденциальности</a>
+                    <a href="/data-policy">Политика обработки данных</a>
+                    <a href="/cookie">Политика Cookie</a>
+                    <a href="/terms">Пользовательское соглашение</a>
+                </nav>
+            </div>
+        </footer>
+
+        <div class="modal-backdrop" id="modal-shop">
+            <div class="modal">
+                <header>
+                    <h3 style="margin:0">Покупка подписки</h3>
+                    <button class="btn" data-close>✕</button>
+                </header>
+                <form action="/shop" onsubmit="event.preventDefault();">
+                
+                    <div class="field">
+                        <label>Способ оплаты</label>
+                        <div class="radio-group">
+                            <input type="radio" name="method" id="method-sbp" value="sbp" checked>
+                            <label for="method-sbp" class="radio-btn" title="SBP">
+                                <img src="/images/sbp.png" alt="SBP">
+                            </label>
+
+                            <input type="radio" name="method" id="method-crystal" value="crystalpay">
+                            <label for="method-crystal" class="radio-btn" title="CrystalPay">
+                                <img src="/images/crystalpay.png" alt="CrystalPay">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="promocode">Промокод</label>
+                        <input id="promocode" name="promocode" required />
+                    </div>
+
+                    <input type="hidden" id="period" name="period" value="1" />
+                    <input type="hidden" name="csrf_token" value="{{csrf_token}}" />
+
+                    <div style="margin-top: 10px;" class="actions">
+                        <button class="btn" type="button" data-close>Отмена</button>
+                        <button class="btn btn-primary" id="submitBtn" type="submit">Оплатить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <title>Профиль — FunMint</title>
+
+    <meta name="description" content="Профиль FunMint — автоматизация рутины на FunPay" />
+    <meta name="keywords"
+        content="funmint, фанминт, funpay extension, фанпей екстенсион, funpay lite bot, фанпей лайт бот, funpay cardinal, фанпей кардинал, funpay vertex, фанпей вертекс, plugin, плагин, plugins, плагины extension, екстенсион, lite bot, лайт бот, cardinal, кардинал, vertex, вертекс, funpay, фанпей">
+    <meta name="author" content="FunMint">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="og:title" content="FunMint">
+    <meta property="og:description" content="Профиль FunMint — автоматизация рутины на FunPay">
+    <meta property="og:image" content="https://funmint.ru/images/icon.png">
+    <meta property="og:url" content="https://funmint.ru/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="FunMint">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FunMint">
+    <meta name="twitter:description" content="Профиль FunMint — автоматизация рутины на FunPay">
+    <meta name="twitter:image" content="https://funmint.ru/images/icon.png">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Профиль — FunMint",
+            "url": "https://funmint.ru/profile",
+            "description": "Профиль FunMint — автоматизация рутины на FunPay",
+            "logo": "https://funmint.ru/images/icon.png"
+        }
+    </script>
+
+    <link rel="stylesheet" href="/Inter.css">
+    <link rel="stylesheet" href="/style.css">
+
+    <script src="/index.js" defer></script>
+    <script src="/fselect.js" defer></script>
+    <script src="/profile.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <div class="container nav">
+            <div class="brand">
+                <a href="/">
+                    <div class="logo" aria-hidden="true">🌿</div>
+                    <span>FunMint</span>
+                </a>
+            </div>
+            <nav>
+                <button class="menu-toggle" aria-label="Меню" onclick="toggleMenu()">☰</button>
+                <div id="navLinks" class="nav-links">
+                    <a href="/#about">О проекте</a>
+                    <a href="/#features">Возможности</a>
+                    <a href="/#pricing">Тарифы</a>
+                    <a href="/#contacts">Контакты</a>
+                    <a href="/#faq">FAQ</a>
+                    <a class="btn" href="/profile">Профиль</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-wrapper">
+        <main>
+            <section class="container" id="profile" style="padding-top:28px;">
+                <div class="profile-layout">
+                    <div class="content">
+                        {{#unless hasSubscribe}}
+                        <div class="card" style="margin-bottom:16px;">
+                            <h3 style="margin:6px 0 8px;">Подписка отсутствует</h3>
+                            <p class="muted-note">Вы можете приобрести подписку на главной странице</p>
+                            <a href="/#pricing" class="btn btn-primary">Перейти</a>
+                        </div>
+                        {{else}}
+                        {{#unless hasGoldenKey}}
+                        <div class="card" style="margin-bottom:16px;">
+                            <h3 style="margin:6px 0 8px;">Привяжите golden_key</h3>
+                            <p class="muted-note">Для использования функций сервиса требуется привязка golden_key</p>
+                            <form class="row" action="/settings/goldenKey" onsubmit="event.preventDefault();">
+                                <div class="field" style="grid-column: 1 / -1;">
+                                    <label for="golden_key">Golden Key</label>
+                                    <input type="text" id="golden_key" name="golden_key" placeholder="Ваш golden_key"
+                                        required />
+                                    <input type="hidden" name="csrf_token" value="{{csrf_token}}" />
+                                </div>
+                                <div>
+                                    <button class="btn btn-primary" id="submitBtn" type="button">Привязать</button>
+                                </div>
+                            </form>
+                        </div>
+                        {{else}}
+                        <div class="card" data-section="main">
+                            <h2 class="section-title">Основное</h2>
+                            <div class="row">
+                                <div class="field">
+                                    <label>Уникальный ID пользователя</label>
+                                    <div class="pill">{{automation.user_id}}</div>
+                                </div>
+                                <div class="field">
+                                    <label>Срок окончания подписки</label>
+                                    <div class="pill">{{automation.subscribe}} дней</div>
+                                </div>
+                            </div>
+
+                            <div class="actions" style="margin-top:14px;">
+                                <button class="btn" data-open="modal-golden">Изменить golden_key</button>
+                            </div>
+
+                            <h3 style="margin:20px 0 8px;">Статистика FunPay профиля</h3>
+                            {{#if stats}}
+                            <div class="row-3">
+                                <div class="card">
+                                    <div class="muted">Имя</div>
+                                    <div style="font-weight:700;">{{stats.name}}</div>
+                                </div>
+                                <div class="card">
+                                    <div class="muted">Баланс</div>
+                                    <div style="font-weight:700;">{{stats.balance}} {{stats.unit}}</div>
+                                </div>
+                                <div class="card">
+                                    <div class="muted">Продажи за день</div>
+                                    <div style="font-weight:700;">{{stats.sales_day}} {{stats.unit}}</div>
+                                </div>
+                                <div class="card">
+                                    <div class="muted">Продажи за месяц</div>
+                                    <div style="font-weight:700;">{{stats.sales_month}} {{stats.unit}}</div>
+                                </div>
+                                <div class="card">
+                                    <div class="muted">Продажи за всё время</div>
+                                    <div style="font-weight:700;">{{stats.sales_all}} {{stats.unit}}</div>
+                                </div>
+                                <div class="card">
+                                    <div class="muted">Всего продаж</div>
+                                    <div style="font-weight:700;">{{stats.sales_count}}</div>
+                                </div>
+                            </div>
+                            {{else}}
+                            <div class="empty-state">Нет данных статистики</div>
+                            {{/if}}
+                            <h3 style="margin:20px 0 8px;">Автоматизация</h3>
+                            <form action="/settings/toggle" onsubmit="event.preventDefault();">
+                                <div class="row" style="display: flex; flex-direction: column; gap: 12px;">
+                                    <label><input type="checkbox" name="answer" value="on" {{#if automation.answer}}checked{{/if}}> Умные автоответы</label>
+                                    <label><input type="checkbox" name="review" value="on" {{#if automation.review}}checked{{/if}}> Автоответ на отзыв</label>
+                                    <label><input type="checkbox" name="raise" value="on" {{#if automation.raise}}checked{{/if}}> Автоподнятие лотов</label>
+                                    <label><input type="checkbox" name="reduction" value="on" {{#if automation.reduction}}checked{{/if}}> Динамическое ценообразование</label>
+                                </div>
+
+                                <div class="actions" style="margin-top:20px;">
+                                    <input type="hidden" name="csrf_token" value="{{csrf_token}}" />
+                                    <button class="btn btn-primary" id="submitBtn" type="button">Сохранить</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="card" data-section="smart">
+                            <div style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+                                <h2 class="section-title" style="margin:0;">Умные автоответы</h2>
+                                <button class="btn btn-primary" data-open="modal-command-create">Создать команду</button>
+                            </div>
+
+                            {{#if answer.length}}
+                            <table class="table" style="margin-top:12px;">
+                                <thead>
+                                    <tr>
+                                        <th>Тип</th>
+                                        <th>Название</th>
+                                        <th>Содержимое</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each answer}}
+                                    <tr>
+                                        <td data-label="Тип"><span class="tag" id="type">{{this.type}}</span></td>
+                                        <td id="command" data-label="Название">{{#if this.command}}{{this.command}}{{else}}—{{/if}}</td>
+                                        <td id="content" data-label="Содержимое"
+                                            style="max-width:520px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{this.content}}</td>
+                                        <td data-label="Действия" class="actions">
+                                            <button class="btn" data-open="modal-command-edit" edit>Редактировать</button>
+                                            <form action="/settings/answer" onsubmit="event.preventDefault();">
+                                                <input type="hidden" name="command" value="{{#if this.command}}{{this.command}}{{else}}{{/if}}" />
+                                                <input type="hidden" name="type" value="{{this.type}}" />
+                                                <input type="hidden" name="content" value="" />
+                                                <input type="hidden" name="csrf_token" value="{{../csrf_token}}" />
+                                                <button class="btn" id="submitBtn" type="button">Удалить</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                            {{else}}
+                            <div class="empty-state" style="margin-top:12px;">Команд пока нет</div>
+                            {{/if}}
+                        </div>
+
+                        <div class="card" data-section="reviews">
+                            <div style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+                                <h2 class="section-title" style="margin:0;">Автоответ на отзыв</h2>
+                                <button class="btn btn-primary" data-open="modal-review-create">Создать автоответ</button>
+                            </div>
+
+                            {{#if review.length}}
+                                <table class="table" style="margin-top:12px;">
+                                    <thead>
+                                        <tr>
+                                            <th>Рейтинг</th>
+                                            <th>Содержимое</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each review}}
+                                        <tr>
+                                            <td id="rating" data-label="Рейтинг"><span class="tag">{{this.rating}}★</span></td>
+                                            <td id="content" data-label="Содержимое"
+                                                style="max-width:520px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+                                                {{this.content}}</td>
+                                            <td data-label="Действия" class="actions">
+                                                <button class="btn" data-open="modal-review-edit" edit>Редактировать</button>
+                                                <form action="/settings/review" onsubmit="event.preventDefault();">
+                                                    <input type="hidden" name="rating" value="{{this.rating}}" />
+                                                    <input type="hidden" name="content" value="" />
+                                                    <input type="hidden" name="csrf_token" value="{{../csrf_token}}" />
+                                                    <button class="btn" id="submitBtn" type="button">Удалить</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </form>
+                            {{else}}
+                            <div class="empty-state" style="margin-top:12px;">Шаблонов автоответов пока нет</div>
+                            {{/if}}
+                        </div>
+
+                        <div class="card" data-section="pricing">
+                            <div style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+                                <h2 class="section-title" style="margin:0;">Динамическое ценообразование</h2>
+                                <button class="btn btn-primary" data-open="modal-lot-create">Создать новый лот</button>
+                            </div>
+
+                            {{#if reduction.length}}
+                                <table class="table" style="margin-top:12px;">
+                                    <thead>
+                                        <tr>
+                                            <th>Ссылка</th>
+                                            <th>Мин. цена</th>
+                                            <th>Сумма перебива</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each reduction}}
+                                        <tr>
+                                            <td data-label="Ссылка"
+                                                style="max-width:420px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+                                                <a href="https://funpay.com/lots/offer?id={{this.lot_id}}" id="lot_id"
+                                                    target="_blank">{{this.lot_id}}</a>
+                                            </td>
+                                            <td id="min_price" data-label="Мин. цена">{{this.min_price}}</td>
+                                            <td id="outbid" data-label="Сумма перебива">{{this.outbid}}</td>
+                                            <td data-label="Действия" class="actions">
+                                                <button class="btn" data-open="modal-lot-edit" edit>Редактировать</button>
+                                                <form action="/settings/reduction" onsubmit="event.preventDefault();">
+                                                    <input type="hidden" name="lot_id" value="{{this.lot_id}}" />
+                                                    <input type="hidden" name="min_price" value="0" />
+                                                    <input type="hidden" name="outbid" value="0" />
+                                                    <input type="hidden" name="csrf_token" value="{{../csrf_token}}" />
+                                                    <button class="btn" id="submitBtn" type="button">Удалить</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </form>
+                            {{else}}
+                            <div class="empty-state" style="margin-top:12px;">Лотов пока нет</div>
+                            {{/if}}
+                        </div>
+                        {{/unless}}
+                        {{/unless}}
+                    </div>
+
+                    <aside class="sidebar">
+                        <button class="btn active" data-tab="main">Основное</button>
+                        <button class="btn" data-tab="smart">Умные автоответы</button>
+                        <button class="btn" data-tab="reviews">Автоответ на отзыв</button>
+                        <button class="btn" data-tab="pricing">Динамическое ценообразование</button>
+                        <a class="btn" href="/logout">Выйти из аккаунта</a>
+                    </aside>
+                </div>
+            </section>
+        </main>
+
+        <div id="notifications"></div>
+
+        <div id="cookie-banner">
+            <div class="container">
+                <div>
+                    Мы используем cookie для авторизации, защиты и улучшения работы Сервиса. Подробнее в нашей
+                    <a href="/cookie">Политике Cookie</a>.
+                </div>
+                <button id="cookie-accept" class="btn btn-primary">
+                    Понятно
+                </button>
+            </div>
+        </div>
+
+        <footer>
+            <div class="container foot">
+                <div style="opacity:.9">© <span id="year"></span> FunMint. Все права защищены.</div>
+                <nav style="display:flex;gap:12px;flex-wrap:wrap">
+                    <a href="/privacy">Политика конфиденциальности</a>
+                    <a href="/data-policy">Политика обработки данных</a>
+                    <a href="/cookie">Политика Cookie</a>
+                    <a href="/terms">Пользовательское соглашение</a>
+                </nav>
+            </div>
+        </footer>
+    </div>
+
+    <div class="modal-backdrop" id="modal-golden">
+        <div class="modal">
+            <header>
+                <h3 style="margin:0">Изменить golden_key</h3>
+                <button class="btn" data-close>✕</button>
+            </header>
+            <form action="/settings/goldenKey" class="row" onsubmit="event.preventDefault();">
+                <div class="field" style="grid-column: 1 / -1;">
+                    <label for="golden_key_new">Новый golden_key</label>
+                    <input id="golden_key_new" name="golden_key" type="text" required />
+                    <input type="hidden" name="csrf_token" value="{{csrf_token}}" />
+                </div>
+                <div class="actions">
+                    <button class="btn" type="button" data-close>Отмена</button>
+                    <button class="btn btn-primary" id="submitBtn" type="button">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-backdrop" id="modal-command-create">
+        <div class="modal">
+            <header>
+                <h3 style="margin:0">Новая команда</h3>
+                <button class="btn" data-close>✕</button>
+            </header>
+            <form class="row" action="/settings/answer" onsubmit="event.preventDefault();">
+                <div class="field">
+                    <label for="type_new">Тип</label>
+                    <select id="type_new" name="type" required data-type-select>
+                        <option value="command">Команда</option>
+                        <option value="greeting">Приветствие</option>
+                        <option value="confirmed">Подтверждение заказа</option>
+                        <option value="review">Отзыв</option>
+                    </select>
+                </div>
+                <div class="field" data-name-field>
+                    <label for="name_new">Название</label>
+                    <input id="name_new" name="command" type="text" placeholder="например: /help" />
+                </div>
+                <div class="field" style="grid-column: 1 / -1;">
+                    <label for="content_new">Содержимое</label>
+                    <textarea id="content_new" name="content" rows="6" placeholder="Ключевые слова:
+{name} - имя клиента
+{profilelink} - ссылка на профиль клиента
+{myname} - имя продавца
+{myprofilelink} - ссылка на профиль продавца"
+                        style="resize:vertical; padding:12px; border-radius:12px; border:1px solid var(--border); background:var(--bg-soft); color:var(--txt)"
+                        required></textarea>
+                </div>
+                <div class="actions">
+                    <button class="btn" type="button" data-close>Отмена</button>
+                    <button class="btn btn-primary" id="submitBtn" type="button">Сохранить</button>
+                </div>
+                <input type="hidden" name="csrf_token" value="{{csrf_token}}" />
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-backdrop" id="modal-command-edit">
+        <div class="modal">
+            <header>
+                <h3 style="margin:0">Редактировать команду</h3>
+                <button class="btn" data-close>✕</button>
+            </header>
+            <form class="row" action="/settings/answer" onsubmit="event.preventDefault();">
+                <div class="field">
+                    <label for="type_new">Тип</label>
+                    <select id="type_new" name="type" required data-type-select>
+                        <option value="command" selected>Команда</option>
+                        <option value="greeting">Приветствие</option>
+                        <option value="confirmed">Подтверждение заказа</option>
+                        <option value="review">Отзыв</option>
+                    </select>
+                </div>
+                <div class="field" data-name-field style="display: block;">
+                    <label for="name_new">Название</label>
+                    <input id="name_new" name="command" type="text" value="" disabled />
+                </div>
+                <div class="field" style="grid-column: 1 / -1;">
+                    <label for="content_new">Содержимое</label>
+                    <textarea id="content_new" name="content" rows="6" placeholder="Ключевые слова:
+{name} - имя клиента
+{profilelink} - ссылка на профиль клиента
+{myname} - имя продавца
+{myprofilelink} - ссылка на профиль продавца"
+                        style="resize:vertical; padding:12px; border-radius:12px; border:1px solid var(--border); background:var(--bg-soft); color:var(--txt)"
+                        required></textarea>
+                </div>
+                <div class="actions">
+                    <button class="btn" type="button" data-close>Отмена</button>
+                    <button class="btn btn-primary" id="submitBtn" type="button">Сохранить</button>
+                </div>
+                <input type="hidden" name="csrf_token" value="{{csrf_token}}" />
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-backdrop" id="modal-review-create">
+        <div class="modal">
+            <header>
+                <h3 style="margin:0">Новый автоответ на отзыв</h3>
+                <button class="btn" data-close>✕</button>
+            </header>
+            <form class="row" action="/settings/review" onsubmit="event.preventDefault();">
+                <div class="field">
+                    <label for="rating_new">Рейтинг (1–5)</label>
+                    <input id="rating_new" name="rating" type="number" min="1" max="5" step="1" required />
+                </div>
+                <div class="field" style="grid-column: 1 / -1;">
+                    <label for="rcontent_new">Содержимое</label>
+                    <textarea id="rcontent_new" name="content" rows="6" placeholder="Ключевые слова:
+{title} - краткое описание товара"
+                        style="resize:vertical; padding:12px; border-radius:12px; border:1px solid var(--border); background:var(--bg-soft); color:var(--txt)"
+                        required></textarea>
+                </div>
+                <div class="actions">
+                    <button class="btn" type="button" data-close>Отмена</button>
+                    <button class="btn btn-primary" id="submitBtn" type="button">Сохранить</button>
+                </div>
+                <input type="hidden" name="csrf_token" value="{{csrf_token}}" />
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-backdrop" id="modal-review-edit">
+        <div class="modal">
+            <header>
+                <h3 style="margin:0">Редактировать автоответ</h3>
+                <button class="btn" data-close>✕</button>
+            </header>
+            <form class="row" action="/settings/review" onsubmit="event.preventDefault();">
+                <div class="field">
+                    <label for="rating_new">Рейтинг (1–5)</label>
+                    <input id="rating_new" name="rating" type="number" min="1" max="5" step="1" value="" disabled />
+                </div>
+                <div class="field" style="grid-column: 1 / -1;">
+                    <label for="rcontent_new">Содержимое</label>
+                    <textarea id="rcontent_new" name="content" rows="6" placeholder="Ключевые слова:
+{title} - краткое описание товара"
+                        style="resize:vertical; padding:12px; border-radius:12px; border:1px solid var(--border); background:var(--bg-soft); color:var(--txt)"
+                        required></textarea>
+                </div>
+                <div class="actions">
+                    <button class="btn" type="button" data-close>Отмена</button>
+                    <button class="btn btn-primary" id="submitBtn" type="button">Сохранить</button>
+                </div>
+                <input type="hidden" name="csrf_token" value="{{csrf_token}}" />
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-backdrop" id="modal-lot-create">
+        <div class="modal">
+            <header>
+                <h3 style="margin:0">Новый лот</h3>
+                <button class="btn" data-close>✕</button>
+            </header>
+            <form class="row" action="/settings/reduction" onsubmit="event.preventDefault();">
+                <div class="field" style="grid-column: 1 / -1;">
+                    <label for="lot_url_new">ID лота</label>
+                    <input id="lot_url_new" name="lot_id" type="url"
+                        placeholder="https://funpay.com/lots/offer?id=12345678 ( 12345678 - ID лота )" required />
+                </div>
+                <div class="field">
+                    <label for="min_price_new">Мин. цена</label>
+                    <input id="min_price_new" name="min_price" type="number" min="0" max="100000" step="1" required />
+                </div>
+                <div class="field">
+                    <label for="undercut_new">Сумма перебива</label>
+                    <input id="undercut_new" name="outbid" type="number" min="0" max="20" step="1" required />
+                </div>
+                <div class="actions">
+                    <button class="btn" type="button" data-close>Отмена</button>
+                    <button class="btn btn-primary" id="submitBtn" type="button">Сохранить</button>
+                </div>
+                <input type="hidden" name="csrf_token" value="{{csrf_token}}" />
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-backdrop" id="modal-lot-edit">
+        <div class="modal">
+            <header>
+                <h3 style="margin:0">Редактировать лот</h3>
+                <button class="btn" data-close>✕</button>
+            </header>
+            <form class="row" action="/settings/reduction" onsubmit="event.preventDefault();">
+                <div class="field" style="grid-column: 1 / -1;">
+                    <label for="lot_url_new">Ссылка на лот</label>
+                    <input id="lot_url_new" name="lot_id" type="url" value="" disabled />
+                </div>
+                <div class="field">
+                    <label for="min_price_new">Мин. цена</label>
+                    <input id="min_price_new" name="min_price" type="number" min="0.001" max="100000" step="1" value=""
+                        required />
+                </div>
+                <div class="field">
+                    <label for="undercut_new">Сумма перебива</label>
+                    <input id="undercut_new" name="outbid" type="number" min="0.001" max="20" step="1" value="" required />
+                </div>
+                <div class="actions">
+                    <button class="btn" type="button" data-close>Отмена</button>
+                    <button class="btn btn-primary" id="submitBtn" type="button">Сохранить</button>
+                </div>
+                <input type="hidden" name="csrf_token" value="{{csrf_token}}" />
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>

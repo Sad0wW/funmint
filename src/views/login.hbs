@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <title>Авторизация — FunMint</title>
+
+    <meta name="description"
+        content="Авторизация FunMint — сервис автоматизации для продавцов FunPay. Быстрый доступ к автоответам, статистике и управлению лотами" />
+    <meta name="keywords"
+        content="funmint, фанминт, funpay extension, фанпей екстенсион, funpay lite bot, фанпей лайт бот, funpay cardinal, фанпей кардинал, funpay vertex, фанпей вертекс, plugin, плагин, plugins, плагины extension, екстенсион, lite bot, лайт бот, cardinal, кардинал, vertex, вертекс, funpay, фанпей">
+    <meta name="author" content="FunMint">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="og:title" content="FunMint">
+    <meta property="og:description"
+        content="Авторизация FunMint — сервис автоматизации для продавцов FunPay. Быстрый доступ к автоответам, статистике и управлению лотами">
+    <meta property="og:image" content="https://funmint.ru/images/icon.png">
+    <meta property="og:url" content="https://funmint.ru/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="FunMint">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FunMint">
+    <meta name="twitter:description"
+        content="Авторизация FunMint — сервис автоматизации для продавцов FunPay. Быстрый доступ к автоответам, статистике и управлению лотами">
+    <meta name="twitter:image" content="https://funmint.ru/images/icon.png">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Авторизация — FunMint",
+            "url": "https://funmint.ru/login",
+            "description": "Авторизация FunMint — сервис автоматизации для продавцов FunPay. Быстрый доступ к автоответам, статистике и управлению лотами",
+            "logo": "https://funmint.ru/images/icon.png"
+        }
+    </script>
+
+    <link rel="stylesheet" href="/Inter.css">
+    <link rel="stylesheet" href="/style.css">
+
+    <script src="/index.js" defer></script>
+    <script src="/login.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <div class="container nav">
+            <div class="brand">
+                <a href="/">
+                    <div class="logo" aria-hidden="true">🌿</div>
+                    <span>FunMint</span>
+                </a>
+            </div>
+            <nav>
+                <button class="menu-toggle" aria-label="Меню" onclick="toggleMenu()">☰</button>
+                <div id="navLinks" class="nav-links">
+                    <a href="/#about">О проекте</a>
+                    <a href="/#features">Возможности</a>
+                    <a href="/#pricing">Тарифы</a>
+                    <a href="/#contacts">Контакты</a>
+                    <a href="/#faq">FAQ</a>
+                    <a class="btn" href="/profile">Профиль</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-wrapper">
+        <main>
+            <div class="form-wrapper">
+                <section id="auth" class="container">
+                    <div class="card" style="max-width:420px;margin:auto;padding:24px">
+                        <h2 id="formTitle" style="margin-bottom:16px">Авторизация</h2>
+
+                        <form id="authForm" onsubmit="event.preventDefault();">
+                            <div style="display:flex;flex-direction:column;gap:12px">
+                                <input type="email" name="email" placeholder="Почта" autocomplete="on" required>
+                                <input type="password" name="password" placeholder="Пароль" required>
+                                <input type="text" name="code" placeholder="Код с почты" style="display:none" disabled>
+                                <input type="hidden" name="csrf_token" value="{{csrf_token}}">
+                            </div>
+
+                            <div id="policyContainer" style="margin-top:14px;display:none">
+                                <label>
+                                    <input type="checkbox" id="policy" style="margin-top:4px">
+                                    <span>Я согласен с <a href="/privacy" target="_blank">политикой
+                                            конфиденциальности</a>,
+                                        <a href="/data-policy" target="_blank">обработкой данных</a>, <a href="/terms"
+                                            target="_blank">пользовательским соглашением</a> и <a href="/cookie"
+                                            target="_blank">политикой cookie</a></span>
+                                </label>
+                            </div>
+
+                            <button type="button" id="submitBtn" class="btn btn-primary" disabled
+                                style="width:100%;margin-top:20px">Войти</button>
+                        </form>
+
+                        <button class="btn" onclick="toggleForm()" style="width:100%;margin-top:12px"
+                            id="toggleBtn">Регистрация</button>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <div id="notifications"></div>
+
+        <div id="cookie-banner">
+            <div class="container">
+                <div>
+                    Мы используем cookie для авторизации, защиты и улучшения работы Сервиса. Подробнее в нашей
+                    <a href="/cookie">Политике Cookie</a>.
+                </div>
+                <button id="cookie-accept" class="btn btn-primary">
+                    Понятно
+                </button>
+            </div>
+        </div>
+
+        <footer>
+            <div class="container foot">
+                <div style="opacity:.9">© <span id="year"></span> FunMint. Все права защищены.</div>
+                <nav style="display:flex;gap:12px;flex-wrap:wrap">
+                    <a href="/privacy">Политика конфиденциальности</a>
+                    <a href="/data-policy">Политика обработки данных</a>
+                    <a href="/cookie">Политика Cookie</a>
+                    <a href="/terms">Пользовательское соглашение</a>
+                </nav>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

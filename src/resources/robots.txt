@@ -1,0 +1,13 @@
+User-agent: *
+
+Disallow: /profile
+
+Disallow: /thank-you
+Disallow: /oops
+
+Disallow: /privacy
+Disallow: /data-policy
+Disallow: /cookie
+Disallow: /terms
+
+Sitemap: https://funmint.ru/sitemap.xml
