@@ -1,37 +1,28 @@
-```{=html}
 <p align="center">
-```
-`<img src="https://img.shields.io/badge/FunMint-Automation-blueviolet?style=for-the-badge">`{=html}
-```{=html}
+
+<img src="https://img.shields.io/badge/FunMint-Automation-blueviolet?style=for-the-badge">
+
 </p>
-```
-```{=html}
+
+
 <h1 align="center">
-```
+
 ⚡ FunMint
-```{=html}
+
 </h1>
-```
-```{=html}
+
 <p align="center">
-```
-Инструменты автоматизации для продавцов `<b>`{=html}FunPay`</b>`{=html}
---- автоответы, перебив цен, автоподнятие лотов и статистика.
-```{=html}
+Инструменты автоматизации для продавцов <b>FunPay</b>
+- автоответы, перебив цен, автоподнятие лотов и статистика.
 </p>
-```
-```{=html}
 <p align="center">
-```
-`<img src="https://img.shields.io/badge/Node.js-18+-green?logo=node.js">`{=html}
-`<img src="https://img.shields.io/badge/Express-backend-black?logo=express">`{=html}
-`<img src="https://img.shields.io/badge/MySQL-database-blue?logo=mysql">`{=html}
-`<img src="https://img.shields.io/badge/Redis-cache-red?logo=redis">`{=html}
-`<img src="https://img.shields.io/badge/license-MIT-green">`{=html}
-`<img src="https://img.shields.io/badge/status-active-success">`{=html}
-```{=html}
+    <img src="https://img.shields.io/badge/Node.js-18+-green?logo=node.js">
+    <img src="https://img.shields.io/badge/Express-backend-black?logo=express">
+    <img src="https://img.shields.io/badge/MySQL-database-blue?logo=mysql">
+    <img src="https://img.shields.io/badge/Redis-cache-red?logo=redis">
+    <img src="https://img.shields.io/badge/license-MIT-green">
+    <img src="https://img.shields.io/badge/status-active-success">
 </p>
-```
 
 ------------------------------------------------------------------------
 
